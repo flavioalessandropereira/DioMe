@@ -89,7 +89,7 @@ def main():
 
       elif opcao == 0:
             traco()
-            print('Saindo do sistema, obrigao por utilizar!')
+            print('Saindo do sistema, obrigado por utilizar!')
             break
          
       else:
