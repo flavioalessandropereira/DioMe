@@ -6,17 +6,17 @@ def traco():
 def menu():
    menu = '''\n
    ========================= MENU =========================
-   [ 1 ] - Depositar
-   [ 2 ] - Sacar
-   [ 3 ] - Extrato
-   [ 4 ] - Novo Usuario
-   [ 5 ] - Nova Conta
-   [ 6 ] - Listar Contas
-   [ 0 ] - Sair
+   [ 1 ]\t - Depositar
+   [ 2 ]\t - Sacar
+   [ 3 ]\t - Extrato
+   [ 4 ]\t - Novo Usuario
+   [ 5 ]\t - Nova Conta
+   [ 6 ]\t - Listar Contas
+   [ 0 ]\t - Sair
    '''
    return input (textwrap.dedent(menu))
 
-def depositar(saldo, valor, extrato,/):
+def depositar(saldo, valor, extrato,/): # por ter o simbolo / os valores são passados por posição
    if valor > 0:
       saldo += valor
       extrato += f'Depósito:\tR$ {valor:.2f}\n'
@@ -26,6 +26,31 @@ def depositar(saldo, valor, extrato,/):
       print('+++ Falha na operação. Valor informado inválido! +++')
 
    return saldo, extrato
+
+
+
+def sacar(*, saldo, valor, extrato, limite, numero_saques, limite_saques):
+   excedeu_saldo = valor > saldo
+   execedeu_limite = valor > limite
+   excedeu_saques = numeros_saques >= limite_saques
+
+   if excedeu_saldo:
+      print('\n+++ Falha na operação. Não tem saldo suficiente! +++')
+   
+   elif execedeu_limite:
+      print('\n+++ Falha na operação. Valor do saque excede o limite diário! +++')
+   
+   elif excedeu_saques:
+      print('\n+++ Falha na operação. Número de saques/dia excedido! +++')
+
+   elif valor > 0:
+      saldo -= valor
+      extrato += f"Saque:\t\tR$ {valor:.2f}\n"
+      numero_saques += 1
+      print('\n**** Saque realizado com sucesso! ****')
+
+   else:
+      print('+++ Falha na operação. Valor informado inválido! +++')
 
 
 def main():
@@ -59,38 +84,30 @@ def main():
             extrato = extrato,
             limite = limite,
             numero_saques = numero_saques,
-            limite_saques = LIMITE_SAQUES
+            limite_saques = LIMITE_SAQUES,
          )
 
-         if excedeu_saldo:
-            print('Falha na operação de Saque. Saldo insuficiente.')
+      elif opcao == 3: # extrato
+         exibir_extrato (saldo, extrato = extrato)
+      
+      elif opcao == 4: # novo cliente
+         criar_usuario = (usuarios)
+      
+      elif opcao == 5: # nova conta
+         numero_conta  = len(contas) + 1
+         conta = criar_conta(AGENCIA, numero_conta, usuarios)
          
-         elif excedeu_limite:
-            print(f'Falha na operação de Saque. Limite R$ {limite}/saque.')
-         
-         elif excedeu_saque:
-            print(f'Falha na operação de Saque. {LIMITE_SAQUES}/dia.')
-               
-         elif valor > 0:
-            saldo -= valor
-            extrato += f'Saque R$ {saldo:.2f}\n'
-            numero_saques += 1
+         if conta:
+            contas.append(conta)
+      
+      elif opcao == 6: # listar contas
+         listar_contas (contas)
 
 
-         else:   
-            print('Falha na operação. Informe um valor válido.')
-
-
-      elif opcao == 3:
+      elif opcao == 0: # sair
          traco()
-         print('\n*************** EXTRATO ***************')
-         print('Sem movimentaçao na Conta' if not extrato else extrato)
-         print(f'\nSaldo: R$ {saldo:.2f}\n')
-
-      elif opcao == 0:
-            traco()
-            print('Saindo do sistema, obrigado por utilizar!')
-            break
+         print('Saindo do sistema, obrigado por utilizar!')
+         break
          
       else:
          print('Operação inválida. Por favor selecione novamente a operação desejada.')
