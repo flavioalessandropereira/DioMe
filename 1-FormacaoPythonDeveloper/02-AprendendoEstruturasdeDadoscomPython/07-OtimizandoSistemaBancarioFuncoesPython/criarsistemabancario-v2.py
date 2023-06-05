@@ -6,13 +6,13 @@ def traco():
 def menu():
    menu = '''\n
    ========================= MENU =========================
-   [ 1 ]\t - Depositar
-   [ 2 ]\t - Sacar
-   [ 3 ]\t - Extrato
-   [ 4 ]\t - Novo Usuario
-   [ 5 ]\t - Nova Conta
-   [ 6 ]\t - Listar Contas
-   [ 0 ]\t - Sair
+   [ d ]\t - Depositar
+   [ s ]\t - Sacar
+   [ e ]\t - Extrato
+   [ nu ]\t - Novo Usuario
+   [ nc ]\t - Nova Conta
+   [ lc ]\t - Listar Contas
+   [ q ]\t - Sair
    '''
    return input (textwrap.dedent(menu))
 
@@ -27,12 +27,10 @@ def depositar(saldo, valor, extrato,/): # por ter o simbolo / os valores são pa
 
    return saldo, extrato
 
-
-
-def sacar(*, saldo, valor, extrato, limite, numero_saques, limite_saques):
+def sacar(*, saldo, valor, extrato, limite, numero_saques, limite_saques): # colocando o * força informar de forma nomeada as variáveis
    excedeu_saldo = valor > saldo
    execedeu_limite = valor > limite
-   excedeu_saques = numeros_saques >= limite_saques
+   excedeu_saques = numero_saques >= limite_saques
 
    if excedeu_saldo:
       print('\n+++ Falha na operação. Não tem saldo suficiente! +++')
@@ -52,6 +50,32 @@ def sacar(*, saldo, valor, extrato, limite, numero_saques, limite_saques):
    else:
       print('+++ Falha na operação. Valor informado inválido! +++')
 
+   return saldo, extrato
+
+def exibir_extrato(saldo, /, *, extrato): # saldo está como posicional(positional only) e o extrato de forma nomeada (keyboard only)
+   print('\n=========== EXTRATO ===========')
+   print('Não foram realizado movimentações.' if not extrato else extrato)
+   print(f'\nSaldo:\t\tR$ {saldo:.2f}')
+   print('======================')
+
+def criar_usuario(usuarios):
+   cpf = input('Informe o CPF (somente números): ')
+   usuario = filtrar_usuario(cpf, usuarios)
+
+   if usuario:
+      print('+++ CPF já cadastrado! +++')
+      return
+   
+   nome = input('Informe Nome Completo: ')
+   data_nascimento = input('Informe data de nascimetno (dd-mm-aaa): ')
+   endereco = input('Informe o endereço (logradouro, número, bairro, cidade/sigla estado): ')
+
+   usuarios.append({'nome':nome, 'data_nascimento':data_nascimento, 'cpf': cpf, 'endereco':endereco})
+   print('**** Usuário criado com sucesso! ****')
+
+
+def filtrar_usuario(cpf, usuarios):
+
 
 def main():
    LIMITE_SAQUES = 3
@@ -67,13 +91,13 @@ def main():
    while True:
       opcao = menu()
 
-      if opcao == 1:
+      if opcao == 'd':
          valor = float(input('Valor do depósito: R$ '))
 
          saldo, extrato = depositar (saldo,valor, extrato)
 
 
-      elif opcao == 2:
+      elif opcao == 's':
          traco()
          print('SACAR')
          valor = float(input('Valor do saque: R$ '))
@@ -87,24 +111,24 @@ def main():
             limite_saques = LIMITE_SAQUES,
          )
 
-      elif opcao == 3: # extrato
+      elif opcao == 'e': # extrato
          exibir_extrato (saldo, extrato = extrato)
       
-      elif opcao == 4: # novo cliente
-         criar_usuario = (usuarios)
+      elif opcao == 'nu': # novo cliente
+         criar_usuario (usuarios)
       
-      elif opcao == 5: # nova conta
+      elif opcao == 'nc': # nova conta
          numero_conta  = len(contas) + 1
          conta = criar_conta(AGENCIA, numero_conta, usuarios)
          
          if conta:
             contas.append(conta)
       
-      elif opcao == 6: # listar contas
+      elif opcao == 'lc': # listar contas
          listar_contas (contas)
 
 
-      elif opcao == 0: # sair
+      elif opcao == 'q': # sair
          traco()
          print('Saindo do sistema, obrigado por utilizar!')
          break
@@ -114,6 +138,6 @@ def main():
 
 
 
-
+main()
 
       
