@@ -3,6 +3,7 @@ import textwrap
 def traco():
    print('=-=' * 15)
 
+
 def menu():
    menu = '''\n
    ========================= MENU =========================
@@ -16,6 +17,7 @@ def menu():
    '''
    return input (textwrap.dedent(menu))
 
+
 def depositar(saldo, valor, extrato,/): # por ter o simbolo / os valores são passados por posição
    if valor > 0:
       saldo += valor
@@ -26,6 +28,7 @@ def depositar(saldo, valor, extrato,/): # por ter o simbolo / os valores são pa
       print('+++ Falha na operação. Valor informado inválido! +++')
 
    return saldo, extrato
+
 
 def sacar(*, saldo, valor, extrato, limite, numero_saques, limite_saques): # colocando o * força informar de forma nomeada as variáveis
    excedeu_saldo = valor > saldo
@@ -52,11 +55,13 @@ def sacar(*, saldo, valor, extrato, limite, numero_saques, limite_saques): # col
 
    return saldo, extrato
 
+
 def exibir_extrato(saldo, /, *, extrato): # saldo está como posicional(positional only) e o extrato de forma nomeada (keyboard only)
    print('\n=========== EXTRATO ===========')
    print('Não foram realizado movimentações.' if not extrato else extrato)
    print(f'\nSaldo:\t\tR$ {saldo:.2f}')
    print('======================')
+
 
 def criar_usuario(usuarios):
    cpf = input('Informe o CPF (somente números): ')
@@ -73,6 +78,7 @@ def criar_usuario(usuarios):
    usuarios.append({'nome':nome, 'data_nascimento':data_nascimento, 'cpf': cpf, 'endereco':endereco})
 
    print('**** Usuário criado com sucesso! ****')
+
 
 
 def filtrar_usuario(cpf, usuarios):
@@ -92,15 +98,19 @@ def criar_conta(agencia, numero_conta, usuarios):
 
 
 def listar_contas(contas):
-   for conta in contas:
-      linha = f'''\
-      Agencia:\t{conta['agencia']}
-      C/C:\t\t{conta['numero_conta']}
-      Titular: \t{conta['usuario']['nome']}
-      '''
-      print('=' * 100)
-      print(textwrap.dedent(linha))
 
+   if not contas:
+      print ('+++ Nenhuma conta cadastrada! +++')
+   
+   else:
+      for conta in contas:
+         linha = f'''\
+         Agencia:\t{conta['agencia']}
+         C/C:\t\t{conta['numero_conta']}
+         Titular: \t{conta['usuario']['nome']}
+         '''
+         print('=' * 100)
+         print(textwrap.dedent(linha))
 
 
 def main():
@@ -161,7 +171,6 @@ def main():
          
       else:
          print('Operação inválida. Por favor selecione novamente a operação desejada.')
-
 
 
 main()
