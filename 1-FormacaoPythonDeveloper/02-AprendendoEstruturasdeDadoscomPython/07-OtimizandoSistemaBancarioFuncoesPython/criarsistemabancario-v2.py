@@ -71,10 +71,36 @@ def criar_usuario(usuarios):
    endereco = input('Informe o endereço (logradouro, número, bairro, cidade/sigla estado): ')
 
    usuarios.append({'nome':nome, 'data_nascimento':data_nascimento, 'cpf': cpf, 'endereco':endereco})
+
    print('**** Usuário criado com sucesso! ****')
 
 
 def filtrar_usuario(cpf, usuarios):
+   usuarios_filtrados = [usuario for usuario in usuarios if usuario ['cpf'] == cpf]
+   return usuarios_filtrados[0]if usuarios_filtrados else None
+
+
+def criar_conta(agencia, numero_conta, usuarios):
+   cpf = input('Informe o CPF do cliente: ')
+   usuario = filtrar_usuario(cpf, usuarios)
+
+   if usuario:
+      print('===== Conta criada com sucesso =====')
+      return {'agencia': agencia, 'numero_conta': numero_conta, 'usuario':usuario}
+   
+   print('++++ Usuário não encontrado, fluco de criação de conta ENCERRADO ! ++++')
+
+
+def listar_contas(contas):
+   for conta in contas:
+      linha = f'''\
+      Agencia:\t{conta['agencia']}
+      C/C:\t\t{conta['numero_conta']}
+      Titular: \t{conta['usuario']['nome']}
+      '''
+      print('=' * 100)
+      print(textwrap.dedent(linha))
+
 
 
 def main():
