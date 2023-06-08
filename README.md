@@ -8,6 +8,6 @@
 * lista, dicionario
 * tupla
 
-- Projetos:
+- Projetos Desenvolvidos:
   * Sistema Bancário v1
   * Sistema Bancário v2
