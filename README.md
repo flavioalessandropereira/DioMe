@@ -9,4 +9,5 @@
 * tupla
 
 - Projetos:
-  * Sistema Bancário v1 / v2
+  * Sistema Bancário v1
+  * Sistema Bancário v2
