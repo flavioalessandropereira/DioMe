@@ -1,5 +1,5 @@
 # DioMe
-** Destinado os meus estudos utilizando a plataforma da DioMe
+** Utilizando a plataforma da DioMe.
 
 1 - Formação Python Developer
 * strings
@@ -8,4 +8,7 @@
 * lista, dicionario
 * tupla
 
-- Projetos:
+- Projetos Desenvolvidos:
+  * Sistema Bancário v1
+  * Sistema Bancário v2
+  * continuando...
