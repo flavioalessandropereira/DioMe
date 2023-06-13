@@ -8,11 +8,12 @@ class Veiculo:
        print('Motor ligado ... Vrumm')
 
 
-    def __str__(self) -> str:
-       return self.cor
+    # def __str__(self) -> str:
+    #    return self.cor
 
-    # def __str__(self) -> str: # mais automático para ver a classe, se adicionar vai aparecer automaticamente
-    # return f"{self.__class__.__name__}: {', '.join([f'{chave}={valor}' for chave, valor in self.__dict__.items()])}"
+    
+    def __str__(self) -> str: # mais automático para ver a classe, se adicionar vai aparecer automaticamente
+        return f"{self.__class__.__name__}: {', '.join([f'{chave}={valor}' for chave, valor in self.__dict__.items()])}"
 
 class Motocicleta(Veiculo):
     pass
