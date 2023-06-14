@@ -35,14 +35,14 @@ class Caminhao (Veiculo):
 
 
 moto = Motocicleta("verde", "BYB1202", 2)
-#print(moto)
+print(moto)
 moto.ligar_motor()
 
 
 carro1 = Carro('vemelho', "PLR2323", 4)
-carro1.ligar_motor()
+print(carro1)
 
 caminhao1 = Caminhao('Branco', 'RFR2312', 10, True)
 caminhao1.ligar_motor()
-caminhao1.esta_carregado()
 print(caminhao1)
+caminhao1.esta_carregado()
