@@ -311,9 +311,9 @@ def criar_conta(numero_conta, clientes, contas):
       print('\n+++ Cliente nao cadastrado! Fluxo de criacao de conta encerrado! +++')
       return
    
-   conta = ContaCorrente.nova_conta(cliente=clients, numero=numero_conta)
+   conta = ContaCorrente.nova_conta(cliente=cliente, numero=numero_conta)
    contas.append(conta)
-   cliente.contas.apppend(conta)
+   cliente.contas.append(conta)
 
    print('\n***** Conta criada com sucesso ! *****')
 
