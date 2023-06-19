@@ -24,11 +24,12 @@ class User(Base):
         return f"User(id={self.id}, name ={self.name}, fullname={self.fullname})"
 
 class Address(Base):
-    id = Column(Integer, primary_key=True, auto_increment=True)
+    __tablename__ = "address"
+    id = Column(Integer, primary_key=True)
     email_address = Column(String(30), nullable=False)
     user_id = Column(Integer, ForeignKey("user_account.id"), nullable=False)
 
-    user = relationship("User", back_population = "address")
+    user = relationship("User", back_populates = "address")
 
     def __repr__(self):
         return f"Address (id={self.id}., email={self.email_address})"
