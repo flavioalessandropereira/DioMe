@@ -1,7 +1,6 @@
 import socket
 import sys
 
-
 def main():
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0)
