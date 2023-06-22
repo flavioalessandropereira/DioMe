@@ -12,6 +12,6 @@ with open ('hosts.txt') as file:
         os.system(f'ping -n 2 {ip}')
         print ('*' * 80)
 
-        os.system(f'ping {ip}')
-        print ('*' * 80)
+        # os.system(f'ping {ip}')
+        # print ('*' * 80)
         time.sleep(3)
