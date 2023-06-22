@@ -1,7 +1,7 @@
 import random
 import string
 
-tamanho = 16
+tamanho = int(input('Digite o tamnho de senha que vc deseja: '))
 
 chars = string.ascii_letters + string.digits + '!@#$%^&*())_=+,.;?'
 
