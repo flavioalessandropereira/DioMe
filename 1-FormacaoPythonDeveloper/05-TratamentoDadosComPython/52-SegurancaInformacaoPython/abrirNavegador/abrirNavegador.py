@@ -10,6 +10,6 @@ def google():
     webbrowser.open('google.com')
 
 
-mygoogle =  Button(roote, text = 'Abrir o Google', command=google).pack(padx=20)
+mygoogle =  Button(roote, text = 'Abrir o Google', command=google).pack(pady=20)
 
 roote.mainloop()
