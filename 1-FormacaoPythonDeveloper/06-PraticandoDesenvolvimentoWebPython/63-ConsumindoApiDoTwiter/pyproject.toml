@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "63-consumindoapidotwiter"
+version = "1.0.0"
+description = ""
+authors = ["flavioalessandropereira <flavioalessandropereira@gmail.com>"]
+readme = "README.md"
+packages = [{include = "63_consumindoapidotwiter"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+tweepy = "^4.14.0"
+pymongo = "^4.4.0"
+pytest = "^7.4.0"
+fastapi = "^0.98.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
